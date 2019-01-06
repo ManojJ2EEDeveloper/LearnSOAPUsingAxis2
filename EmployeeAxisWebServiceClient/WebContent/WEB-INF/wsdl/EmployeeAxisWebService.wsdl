@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:ns="http://service.employee.com" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ax21="http://entity.employee.com/xsd" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:ns1="http://org.apache.axis2/xsd" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" targetNamespace="http://service.employee.com">
+<wsdl:documentation> Employee Web Service using Axis 2 </wsdl:documentation>
+<wsdl:types>
+<xs:schema attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://entity.employee.com/xsd">
+<xs:complexType name="Employee">
+<xs:sequence>
+<xs:element minOccurs="0" name="age" type="xs:int"/>
+<xs:element minOccurs="0" name="department" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="name" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="salary" type="xs:double"/>
+</xs:sequence>
+</xs:complexType>
+</xs:schema>
+<xs:schema xmlns:ax22="http://entity.employee.com/xsd" attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://service.employee.com">
+<xs:import namespace="http://entity.employee.com/xsd"/>
+<xs:element name="getAllEmployees">
+<xs:complexType>
+<xs:sequence/>
+</xs:complexType>
+</xs:element>
+<xs:element name="getAllEmployeesResponse">
+<xs:complexType>
+<xs:sequence>
+<xs:element minOccurs="0" name="return" nillable="true" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="getEmployeeData">
+<xs:complexType>
+<xs:sequence>
+<xs:element minOccurs="0" name="name" nillable="true" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="getEmployeeDataResponse">
+<xs:complexType>
+<xs:sequence>
+<xs:element minOccurs="0" name="return" nillable="true" type="ax22:Employee"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="getSalaryForEmployee">
+<xs:complexType>
+<xs:sequence>
+<xs:element minOccurs="0" name="name" nillable="true" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="getSalaryForEmployeeResponse">
+<xs:complexType>
+<xs:sequence>
+<xs:element name="return" type="xs:double"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="getDepartmentForEmployee">
+<xs:complexType>
+<xs:sequence>
+<xs:element minOccurs="0" name="name" nillable="true" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="getDepartmentForEmployeeResponse">
+<xs:complexType>
+<xs:sequence>
+<xs:element minOccurs="0" name="return" nillable="true" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="getAgeForEmployee">
+<xs:complexType>
+<xs:sequence>
+<xs:element minOccurs="0" name="name" nillable="true" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="getAgeForEmployeeResponse">
+<xs:complexType>
+<xs:sequence>
+<xs:element name="return" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+</xs:schema>
+</wsdl:types>
+<wsdl:message name="getEmployeeDataRequest">
+<wsdl:part name="parameters" element="ns:getEmployeeData"/>
+</wsdl:message>
+<wsdl:message name="getEmployeeDataResponse">
+<wsdl:part name="parameters" element="ns:getEmployeeDataResponse"/>
+</wsdl:message>
+<wsdl:message name="getAgeForEmployeeRequest">
+<wsdl:part name="parameters" element="ns:getAgeForEmployee"/>
+</wsdl:message>
+<wsdl:message name="getAgeForEmployeeResponse">
+<wsdl:part name="parameters" element="ns:getAgeForEmployeeResponse"/>
+</wsdl:message>
+<wsdl:message name="getDepartmentForEmployeeRequest">
+<wsdl:part name="parameters" element="ns:getDepartmentForEmployee"/>
+</wsdl:message>
+<wsdl:message name="getDepartmentForEmployeeResponse">
+<wsdl:part name="parameters" element="ns:getDepartmentForEmployeeResponse"/>
+</wsdl:message>
+<wsdl:message name="getSalaryForEmployeeRequest">
+<wsdl:part name="parameters" element="ns:getSalaryForEmployee"/>
+</wsdl:message>
+<wsdl:message name="getSalaryForEmployeeResponse">
+<wsdl:part name="parameters" element="ns:getSalaryForEmployeeResponse"/>
+</wsdl:message>
+<wsdl:message name="getAllEmployeesRequest">
+<wsdl:part name="parameters" element="ns:getAllEmployees"/>
+</wsdl:message>
+<wsdl:message name="getAllEmployeesResponse">
+<wsdl:part name="parameters" element="ns:getAllEmployeesResponse"/>
+</wsdl:message>
+<wsdl:portType name="EmployeeServicePortType">
+<wsdl:operation name="getEmployeeData">
+<wsdl:input message="ns:getEmployeeDataRequest" wsaw:Action="urn:getEmployeeData"/>
+<wsdl:output message="ns:getEmployeeDataResponse" wsaw:Action="urn:getEmployeeDataResponse"/>
+</wsdl:operation>
+<wsdl:operation name="getAgeForEmployee">
+<wsdl:input message="ns:getAgeForEmployeeRequest" wsaw:Action="urn:getAgeForEmployee"/>
+<wsdl:output message="ns:getAgeForEmployeeResponse" wsaw:Action="urn:getAgeForEmployeeResponse"/>
+</wsdl:operation>
+<wsdl:operation name="getDepartmentForEmployee">
+<wsdl:input message="ns:getDepartmentForEmployeeRequest" wsaw:Action="urn:getDepartmentForEmployee"/>
+<wsdl:output message="ns:getDepartmentForEmployeeResponse" wsaw:Action="urn:getDepartmentForEmployeeResponse"/>
+</wsdl:operation>
+<wsdl:operation name="getSalaryForEmployee">
+<wsdl:input message="ns:getSalaryForEmployeeRequest" wsaw:Action="urn:getSalaryForEmployee"/>
+<wsdl:output message="ns:getSalaryForEmployeeResponse" wsaw:Action="urn:getSalaryForEmployeeResponse"/>
+</wsdl:operation>
+<wsdl:operation name="getAllEmployees">
+<wsdl:input message="ns:getAllEmployeesRequest" wsaw:Action="urn:getAllEmployees"/>
+<wsdl:output message="ns:getAllEmployeesResponse" wsaw:Action="urn:getAllEmployeesResponse"/>
+</wsdl:operation>
+</wsdl:portType>
+<wsdl:binding name="EmployeeServiceSoap11Binding" type="ns:EmployeeServicePortType">
+<soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+<wsdl:operation name="getEmployeeData">
+<soap:operation soapAction="urn:getEmployeeData" style="document"/>
+<wsdl:input>
+<soap:body use="literal"/>
+</wsdl:input>
+<wsdl:output>
+<soap:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="getAgeForEmployee">
+<soap:operation soapAction="urn:getAgeForEmployee" style="document"/>
+<wsdl:input>
+<soap:body use="literal"/>
+</wsdl:input>
+<wsdl:output>
+<soap:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="getDepartmentForEmployee">
+<soap:operation soapAction="urn:getDepartmentForEmployee" style="document"/>
+<wsdl:input>
+<soap:body use="literal"/>
+</wsdl:input>
+<wsdl:output>
+<soap:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="getSalaryForEmployee">
+<soap:operation soapAction="urn:getSalaryForEmployee" style="document"/>
+<wsdl:input>
+<soap:body use="literal"/>
+</wsdl:input>
+<wsdl:output>
+<soap:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="getAllEmployees">
+<soap:operation soapAction="urn:getAllEmployees" style="document"/>
+<wsdl:input>
+<soap:body use="literal"/>
+</wsdl:input>
+<wsdl:output>
+<soap:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+</wsdl:binding>
+<wsdl:binding name="EmployeeServiceSoap12Binding" type="ns:EmployeeServicePortType">
+<soap12:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+<wsdl:operation name="getEmployeeData">
+<soap12:operation soapAction="urn:getEmployeeData" style="document"/>
+<wsdl:input>
+<soap12:body use="literal"/>
+</wsdl:input>
+<wsdl:output>
+<soap12:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="getAgeForEmployee">
+<soap12:operation soapAction="urn:getAgeForEmployee" style="document"/>
+<wsdl:input>
+<soap12:body use="literal"/>
+</wsdl:input>
+<wsdl:output>
+<soap12:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="getDepartmentForEmployee">
+<soap12:operation soapAction="urn:getDepartmentForEmployee" style="document"/>
+<wsdl:input>
+<soap12:body use="literal"/>
+</wsdl:input>
+<wsdl:output>
+<soap12:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="getSalaryForEmployee">
+<soap12:operation soapAction="urn:getSalaryForEmployee" style="document"/>
+<wsdl:input>
+<soap12:body use="literal"/>
+</wsdl:input>
+<wsdl:output>
+<soap12:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="getAllEmployees">
+<soap12:operation soapAction="urn:getAllEmployees" style="document"/>
+<wsdl:input>
+<soap12:body use="literal"/>
+</wsdl:input>
+<wsdl:output>
+<soap12:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+</wsdl:binding>
+<wsdl:binding name="EmployeeServiceHttpBinding" type="ns:EmployeeServicePortType">
+<http:binding verb="POST"/>
+<wsdl:operation name="getEmployeeData">
+<http:operation location="getEmployeeData"/>
+<wsdl:input>
+<mime:content type="application/xml" part="parameters"/>
+</wsdl:input>
+<wsdl:output>
+<mime:content type="application/xml" part="parameters"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="getAgeForEmployee">
+<http:operation location="getAgeForEmployee"/>
+<wsdl:input>
+<mime:content type="application/xml" part="parameters"/>
+</wsdl:input>
+<wsdl:output>
+<mime:content type="application/xml" part="parameters"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="getDepartmentForEmployee">
+<http:operation location="getDepartmentForEmployee"/>
+<wsdl:input>
+<mime:content type="application/xml" part="parameters"/>
+</wsdl:input>
+<wsdl:output>
+<mime:content type="application/xml" part="parameters"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="getSalaryForEmployee">
+<http:operation location="getSalaryForEmployee"/>
+<wsdl:input>
+<mime:content type="application/xml" part="parameters"/>
+</wsdl:input>
+<wsdl:output>
+<mime:content type="application/xml" part="parameters"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="getAllEmployees">
+<http:operation location="getAllEmployees"/>
+<wsdl:input>
+<mime:content type="application/xml" part="parameters"/>
+</wsdl:input>
+<wsdl:output>
+<mime:content type="application/xml" part="parameters"/>
+</wsdl:output>
+</wsdl:operation>
+</wsdl:binding>
+<wsdl:service name="EmployeeService">
+<wsdl:port name="EmployeeServiceHttpSoap11Endpoint" binding="ns:EmployeeServiceSoap11Binding">
+<soap:address location="http://localhost:8080/EmployeeAxisWebService/services/EmployeeService.EmployeeServiceHttpSoap11Endpoint/"/>
+</wsdl:port>
+<wsdl:port name="EmployeeServiceHttpSoap12Endpoint" binding="ns:EmployeeServiceSoap12Binding">
+<soap12:address location="http://localhost:8080/EmployeeAxisWebService/services/EmployeeService.EmployeeServiceHttpSoap12Endpoint/"/>
+</wsdl:port>
+<wsdl:port name="EmployeeServiceHttpEndpoint" binding="ns:EmployeeServiceHttpBinding">
+<http:address location="http://localhost:8080/EmployeeAxisWebService/services/EmployeeService.EmployeeServiceHttpEndpoint/"/>
+</wsdl:port>
+</wsdl:service>
+</wsdl:definitions>
